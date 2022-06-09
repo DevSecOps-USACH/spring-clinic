@@ -1,6 +1,6 @@
 trigger:
 - main
-- feature-darwinMunoz-interfaz
+- feature-az-devops
 
 pool:
   vmImage: ubuntu-latest
