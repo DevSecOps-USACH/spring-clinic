@@ -60,7 +60,14 @@ jobs:
       pollingTimeoutSec: '300'
     displayName: 'Publish Analysis Results'
     
-  - task: sonarcloud-buildbreaker@2
-    inputs:
-      SonarCloud: 'Sonarcloud'
-      organization: 'devsecops-usach'
+  #- task: sonarcloud-buildbreaker@2
+  #  inputs:
+  #    SonarCloud: 'Sonarcloud'
+  #    organization: 'devsecops-usach'
+
+- job: sonar
+  workspace:
+    clean: all
+  displayName:  Image Build
+  steps:
+    - script: "Creando imagen Docker"
