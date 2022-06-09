@@ -1,6 +1,6 @@
-trigger:
-- main
-- feature-az-devops
+#trigger:
+#- main
+#- feature-az-devops
 
 pool:
   vmImage: ubuntu-latest
