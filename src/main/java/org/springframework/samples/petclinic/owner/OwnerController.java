@@ -110,6 +110,7 @@ class OwnerController {
 		}
 		else {
 			// multiple owners found
+			String password = "1234556";
 			lastName = owner.getLastName();
 			return addPaginationModel(page, model, lastName, ownersResults);
 		}
