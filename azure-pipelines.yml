@@ -40,9 +40,9 @@ jobs:
   - task: SonarCloudPrepare@1
     inputs:
       SonarCloud: 'Sonarcloud'
-      organization: 'devops-foundation'
-      projectKey: 'devops-foundation'
-      projectName: 'testing-web'
+      organization: 'devsecops-usach'
+      projectKey: 'DevSecOps-USACH_spring-clinic'
+      projectName: 'spring-clinic'
     displayName: 'Preparing Sonarqube Environment'
     
   - task: Gradle@3
