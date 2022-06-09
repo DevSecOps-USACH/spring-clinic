@@ -66,6 +66,7 @@ jobs:
   #    organization: 'devsecops-usach'
 
 - job: docker
+  dependsOn: sonar
   workspace:
     clean: all
   displayName:  Image Build
