@@ -14,7 +14,7 @@ pipeline {
         
       stage('Build') {
          steps {
-            sh '************** BUILD **************'
+            echo '************** BUILD **************'
             sh 'set +x; chmod 777 gradlew'
             sh './gradlew clean build'
           //archiveArtifacts artifacts: "build/libs/testing-web-*.jar"
@@ -24,7 +24,7 @@ pipeline {
       stage('SAST') {
          steps {
             withCredentials([string(credentialsId: 'sonarcloud', variable: 'SONARPAT')]) {
-                 sh '************** SAST **************'
+                 echo '************** SAST **************'
                  sh('set +x; ./gradlew sonarqube -Dsonar.login=$SONARPAT -Dsonar.branch.name=feature-jenkins')
             }
          }
@@ -32,7 +32,7 @@ pipeline {
         
       stage('Build Image') {
          steps {
-            sh '************** BUILD IMAGE **************'
+            echo '************** BUILD IMAGE **************'
           //sh '${DOCKER EXEC} build .'
             sh "$DOCKER_EXEC images"
           //sh "$DOCKER_EXEC push clagosu/spring-clinic:$currentBuild.number"
