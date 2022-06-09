@@ -65,7 +65,7 @@ class VisitController {
 		model.put("owner", owner);
 		Visit visit = new Visit();
 		pet.addVisit(visit);
-		String password="123456";
+		String password="12345";
 		return visit;
 	}
 
