@@ -31,6 +31,14 @@ jobs:
       pathToPublish: '$(Build.ArtifactStagingDirectory)'
       artifactName: appJar
       publishLocation: 'Container'
+- job: horusec
+  workspace:
+    clean: all
+  displayName: Horusec
+  steps:
+    - script: |
+        curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
+        horusec start -p ./src   
 
 - job: sonar
   workspace:
