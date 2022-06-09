@@ -24,9 +24,11 @@ pipeline {
       stage('SAST') {
          steps {
             withCredentials([string(credentialsId: 'sonarcloud', variable: 'SONARPAT')]) {
-                 echo '************** SAST **************'
+                 echo '************** SAST SONARCLOUD **************'
                  sh('set +x; ./gradlew sonarqube -Dsonar.login=$SONARPAT -Dsonar.branch.name=feature-jenkins')
             }
+             echo '************** SAST HORUSEC **************'
+             sh 'horusec start -p /Users/clagosu/Desktop/Laboratorio/spring-clinic/src --information-severity=true'
          }
       }
         
