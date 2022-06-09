@@ -70,4 +70,4 @@ jobs:
     clean: all
   displayName:  Image Build
   steps:
-    - script: "Creando imagen Docker"
+    - script: echo "Creando imagen Docker"
