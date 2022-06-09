@@ -24,6 +24,7 @@ class WelcomeController {
 
 	@GetMapping("/")
 	public String welcome() {
+		String password = "123";
 		return "welcome";
 	}
 
