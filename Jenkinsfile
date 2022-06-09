@@ -20,13 +20,13 @@ pipeline {
          }
       }
         
-      stage('Code Quality') {
+      stage('SAST') {
          steps {
             withCredentials([string(credentialsId: 'sonarcloud', variable: 'SONARPAT')]) {
                  sh('set -x; ./gradlew sonarqube -Dsonar.login=$SONARPAT -Dsonar.branch.name=feature-jenkins')
             }
-            echo "$DOCKER"
-            echo "$currentBuild.number"
+            //echo "$DOCKER"
+            //echo "$currentBuild.number"
          }
       }
         
