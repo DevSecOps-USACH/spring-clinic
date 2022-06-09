@@ -65,7 +65,7 @@ jobs:
   #    SonarCloud: 'Sonarcloud'
   #    organization: 'devsecops-usach'
 
-- job: sonar
+- job: docker
   workspace:
     clean: all
   displayName:  Image Build
