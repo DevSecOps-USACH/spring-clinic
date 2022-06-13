@@ -3,6 +3,7 @@ pipeline {
     environment {
        DOCKER = tool 'docker' 
        DOCKER_EXEC = '$DOCKER/docker'
+       SCA = '/Users/clagosu/Documents/dependency-check/bin/dependency-check.sh'
     }
     stages {
       
@@ -30,6 +31,12 @@ pipeline {
          }
       }
         
+      stage('SCA') {
+        steps {
+            sh "$SCA --project 'spring-clinic' --scan '.'"
+        }
+     }
+        
       stage('Build Image') {
          steps {
             echo '************** BUILD IMAGE **************'
@@ -38,12 +45,6 @@ pipeline {
           //sh "$DOCKER_EXEC push clagosu/spring-clinic:$currentBuild.number"
             }
         }
-        
-      stage('Deploy') {
-        steps {
-            echo "Deploy to Desarrollo"
-        }
-     }
    }
 }
 
