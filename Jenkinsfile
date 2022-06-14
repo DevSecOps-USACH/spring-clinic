@@ -34,6 +34,7 @@ pipeline {
       stage('SCA') {
         steps {
             sh "$SCA --project 'spring-clinic' --scan '${WORKSPACE}/build/libs/spring-petclinic-2.6.0.jar'"
+            sh "./gradlew cyclonedxBom -info"
         }
      }
         
