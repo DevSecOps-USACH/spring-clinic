@@ -73,6 +73,14 @@ jobs:
   #    SonarCloud: 'Sonarcloud'
   #    organization: 'devsecops-usach'
 
+- job: sca
+  steps:
+  - task: dependency-check-build-task@6
+    inputs:
+      projectName: 'Spring-clinic'
+      scanPath: '.'
+      format: 'HTML'
+
 - job: docker
   dependsOn: sonar
   workspace:
