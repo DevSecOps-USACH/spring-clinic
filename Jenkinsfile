@@ -9,7 +9,7 @@ pipeline {
       
       stage('SCM') {
          steps {
-            figlet 'SOURCE CONTROL MANAGEMENT'
+            figlet 'SOURCE-CONTROL-MANAGEMENT'
             checkout scm // clonacion de codigo en nodo
          }
       }
@@ -26,7 +26,7 @@ pipeline {
       stage('SAST') {
          steps {
             withCredentials([string(credentialsId: 'sonarcloud', variable: 'SONARPAT')]) {
-                 echo '************** SAST SONARCLOUD **************'
+                 figlet 'SAST-SONARCLOUD'
                  sh('set +x; ./gradlew sonarqube -Dsonar.login=$SONARPAT -Dsonar.branch.name=feature-jenkins')
             }
          }
@@ -34,7 +34,7 @@ pipeline {
         
       stage('SCA') {
         steps {
-            echo '************** SCA DEPENDENCY CHECK **************'
+            figlet 'SCA-DEPENDENCY-CHECK'
             sh "$SCA --project 'spring-clinic' --scan '${WORKSPACE}/build/libs/spring-petclinic-2.6.0.jar'"
             echo '************** SBOM CYCLONEDX **************'
             sh "./gradlew cyclonedxBom -info"
@@ -52,7 +52,7 @@ pipeline {
         
         stage('DAST') {
         steps {
-            figlet 'DAST OWASP ZAP'
+            figlet 'DAST-OWASP-ZAP'
             //sh "${DOCKER_EXEC} run --rm -v ${WORKSPACE}:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t https://www.hackthissite.org/ -r DAST_Report.html"
         }
      }
