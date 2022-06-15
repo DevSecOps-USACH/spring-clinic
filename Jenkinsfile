@@ -7,13 +7,13 @@ pipeline {
     }
     stages {
       
-      stage('Git') {
+      stage('SCM') {
          steps {
             checkout scm // clonacion de codigo en nodo
          }
       }
         
-      stage('Build') {
+      stage('BUILD') {
          steps {
             echo '************** BUILD **************'
             sh 'set +x; chmod 777 gradlew'
@@ -42,7 +42,7 @@ pipeline {
         
       stage('Build Image') {
          steps {
-            echo '************** BUILD IMAGE **************'
+            figlet 'IMAGE'
           //sh '${DOCKER EXEC} build .'
             //sh "$DOCKER_EXEC images"
           //sh "$DOCKER_EXEC push clagosu/spring-clinic:$currentBuild.number"
@@ -51,8 +51,8 @@ pipeline {
         
         stage('DAST') {
         steps {
-            echo '************** DAST OWASP ZAP **************'
-            sh '''$DOCKER_EXEC run --rm -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t https://www.hackthissite.org/ -r DAST_Report.html'''
+            figlet 'DAST OWASP ZAP'
+            //sh "${DOCKER_EXEC} run --rm -v ${WORKSPACE}:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t https://www.hackthissite.org/ -r DAST_Report.html"
         }
      }
         
