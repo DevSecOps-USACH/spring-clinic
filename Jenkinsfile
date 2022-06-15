@@ -52,7 +52,7 @@ pipeline {
         stage('DAST') {
         steps {
             echo '************** DAST OWASP ZAP **************'
-            sh "$DOCKER_EXEC run --rm -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t https://www.hackthissite.org/ -r DAST_Report.html"
+            sh '''$DOCKER_EXEC run --rm -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t https://www.hackthissite.org/ -r DAST_Report.html'''
         }
      }
         
