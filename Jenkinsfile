@@ -44,10 +44,18 @@ pipeline {
          steps {
             echo '************** BUILD IMAGE **************'
           //sh '${DOCKER EXEC} build .'
-            sh "$DOCKER_EXEC images"
+            //sh "$DOCKER_EXEC images"
           //sh "$DOCKER_EXEC push clagosu/spring-clinic:$currentBuild.number"
             }
         }
+        
+        stage('DAST') {
+        steps {
+            echo '************** DAST OWASP ZAP **************'
+            sh "$DOCKER_EXEC run --rm -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t https://www.hackthissite.org/ -r DAST_Report.html"
+        }
+     }
+        
    }
 }
 
