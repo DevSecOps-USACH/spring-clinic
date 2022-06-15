@@ -33,7 +33,9 @@ pipeline {
         
       stage('SCA') {
         steps {
+            echo '************** SCA DEPENDENCY CHECK **************'
             sh "$SCA --project 'spring-clinic' --scan '${WORKSPACE}/build/libs/spring-petclinic-2.6.0.jar'"
+            echo '************** SBOM CYCLONEDX **************'
             sh "./gradlew cyclonedxBom -info"
         }
      }
