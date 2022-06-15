@@ -9,13 +9,14 @@ pipeline {
       
       stage('SCM') {
          steps {
+            figlet 'SOURCE CONTROL MANAGEMENT'
             checkout scm // clonacion de codigo en nodo
          }
       }
         
       stage('BUILD') {
          steps {
-            echo '************** BUILD **************'
+            figlet 'BUILD'
             sh 'set +x; chmod 777 gradlew'
             sh './gradlew clean build'
           //archiveArtifacts artifacts: "build/libs/testing-web-*.jar"
